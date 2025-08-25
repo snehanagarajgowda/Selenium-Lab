@@ -34,7 +34,7 @@ public class Lab6_ValidationInSelenium {
 		
 		WebElement specifyTab=driver.findElement(By.id("tab-specification"));
 		if(specifyTab.isDisplayed()) {
-			System.out.println("Specification details are displayed"+specifyTab);
+			System.out.println("Specification details are displayed");
 		}
 		
 		driver.findElement(By.xpath("//*[@id=\"content\"]/div[1]/div[2]/div[1]/button[1]")).click();
@@ -61,17 +61,21 @@ public class Lab6_ValidationInSelenium {
 		input.clear();
 		input.sendKeys("3");
 		
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		
 		driver.findElement(By.id("button-cart")).click();
 		
+		
+		
         WebElement cartMsg = driver.findElement(By.xpath("//*[@id=\"button-cart\"]"));
         
+      
         String expectedMsg = "Success: You have added HTC Touch HD to your shopping cart!";
 
         if (cartMsg.getText().contains(expectedMsg)) {
             System.out.println("Successfully added to cart");
         }
+        
         Thread.sleep(2000);
         
 		driver.findElement(By.id("cart-total")).click();
