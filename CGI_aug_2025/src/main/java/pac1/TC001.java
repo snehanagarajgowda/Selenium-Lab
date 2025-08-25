@@ -16,10 +16,11 @@ public class TC001 {
 		WebDriverManager.chromedriver().setup();
 		WebDriver driver=new ChromeDriver();
 		driver.get("https://tutorialsninja.com/demo/index.php?");
-		WebElement element = driver.findElement(By.xpath("//*[@id='top-links']/ul/li[2]/a/span[2]"));
-        element.click();		
-        driver.findElement(By.linkText("Register")).click();
-
+		
+		
+		
+		
+		
 	}
 
 }
