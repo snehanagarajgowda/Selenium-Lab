@@ -1,0 +1,84 @@
+package pac1;
+
+package New;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Lab3And4_JUnitTest {
+
+    WebDriver driver;
+
+    @Before
+    public void setUp() {
+        String browser = "chrome"; // change to "ie" for Internet Explorer
+
+        if (browser.equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        } else if (browser.equalsIgnoreCase("ie")) {
+            WebDriverManager.iedriver().setup();
+            driver = new InternetExplorerDriver();
+        }
+        driver.manage().window().maximize();
+    }
+
+    @Test
+    public void testCombinedFlow() throws InterruptedException {
+        driver.get("https://tutorialsninja.com/demo/index.php");
+
+        // Verify Title
+        String expectedTitle = "Your Store";
+        String actualTitle = driver.getTitle();
+        assertEquals("Title mismatch!", expectedTitle, actualTitle);
+
+        // Navigate to Desktops > Mac (1)
+        driver.findElement(By.linkText("Desktops")).click();
+        driver.findElement(By.linkText("Mac (1)")).click();
+
+        // Sort by Name (A - Z)
+        WebElement sort = driver.findElement(By.id("input-sort"));
+        sort.sendKeys("Name (A - Z)");
+
+        // Add to Cart button
+        driver.findElement(By.xpath("//*[@id=\"content\"]/div[2]/div/div/div[2]/div[2]/button[1]")).click();
+
+        // Search "Mobile"
+        WebElement searchBox = driver.findElement(By.xpath("//*[@id=\"search\"]/input"));
+        searchBox.sendKeys("Mobile");
+        driver.findElement(By.xpath("//*[@id=\"search\"]/span/button")).click();
+
+        // Verify heading after Mobile search
+        WebElement heading1 = driver.findElement(By.xpath("//*[@id=\"content\"]/h2"));
+        assertTrue("Heading not displayed for Mobile search!", heading1.isDisplayed());
+
+        // Clear and search "Monitors"
+        WebElement searchBox2 = driver.findElement(By.xpath("//*[@id=\"search\"]/input"));
+        searchBox2.clear();
+        searchBox2.sendKeys("Monitors");
+        driver.findElement(By.xpath("//*[@id=\"search\"]/span/button")).click();
+
+        // Verify heading after Monitors search
+        WebElement heading2 = driver.findElement(By.xpath("//*[@id=\"content\"]/h2"));
+        assertTrue("Heading not displayed for Monitors search!", heading2.isDisplayed());
+    }
+
+    @After
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+
+
+

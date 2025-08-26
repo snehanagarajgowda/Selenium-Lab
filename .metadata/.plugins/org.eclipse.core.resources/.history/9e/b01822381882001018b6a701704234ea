@@ -1,0 +1,40 @@
+package pac1;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class p {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		
+		// Navigate back and forward
+		driver.get("https://www.google.com");
+		/*System.out.println("Title is:"+driver.getTitle());
+		System.out.println("Current url is:"+driver.getCurrentUrl());
+		System.out.println("Page source is:"driver.getPageSource());*/
+		driver.navigate().to("https://www.yahoo.com");
+		System.out.println("Title is:"+driver.getTitle());
+		driver.navigate().back();
+		System.out.println("After navigating back title is:"+driver.getTitle());
+		driver.navigate().forward();
+		System.out.println("After navigating forward title is:"+driver.getTitle());
+		
+		// getWindowHandle and getWindowHandles
+		
+		//driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		
+		//driver.findElement(By)
+		
+		
+		
+		driver.quit();
+		 
+
+	}
+
+}
