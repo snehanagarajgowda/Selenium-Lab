@@ -3,8 +3,8 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="pac1.Lab4_TestNG"/>
-      <class name="pac1.Lab3_TestNG"/>
+      <class name="pac1.Lab8B_TestNG"/>
+      <class name="pac1.Lab8A_TestNG"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
